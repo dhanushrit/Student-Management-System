@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Student Management System</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>🎓 Student Management System</h2>
+  <div class="user-info">
+    <span>Logged in as <strong id="loggedInUser"></strong></span>
+    <button class="btn secondary small" id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="toolbar">
+    <input type="text" id="searchInput" placeholder="Search by name, roll no., or department...">
+    <button class="btn small" id="addStudentBtn">+ Add Student</button>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Roll No.</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Year</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="studentsTableBody">
+        <!-- rows injected by app.js -->
+      </tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      No students found. Click "Add Student" to create the first record.
+    </div>
+  </div>
+</div>
+
+<!-- Add / Edit Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Add Student</h3>
+    <form id="studentForm" novalidate>
+      <input type="hidden" id="studentId">
+
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+        <small class="error" id="nameError"></small>
+      </div>
+
+      <div class="field">
+        <label for="roll_number">Roll Number</label>
+        <input type="text" id="roll_number" required>
+        <small class="error" id="roll_numberError"></small>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <small class="error" id="emailError"></small>
+      </div>
+
+      <div class="field">
+        <label for="department">Department</label>
+        <input type="text" id="department" required>
+        <small class="error" id="departmentError"></small>
+      </div>
+
+      <div class="field">
+        <label for="year">Year</label>
+        <select id="year" required>
+          <option value="">Select year</option>
+          <option value="1">1st Year</option>
+          <option value="2">2nd Year</option>
+          <option value="3">3rd Year</option>
+          <option value="4">4th Year</option>
+        </select>
+        <small class="error" id="yearError"></small>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone (optional)</label>
+        <input type="text" id="phone" placeholder="10-digit number">
+        <small class="error" id="phoneError"></small>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn secondary" id="cancelBtn">Cancel</button>
+        <button type="submit" class="btn" id="saveBtn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteOverlay">
+  <div class="modal">
+    <h3>Delete student?</h3>
+    <p id="deleteMessage" style="color:var(--muted);"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn secondary" id="cancelDeleteBtn">Cancel</button>
+      <button type="button" class="btn danger" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
